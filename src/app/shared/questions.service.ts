@@ -26,6 +26,16 @@ export class QuestionsService {
         {option: "Programming Language", correct: false}
       ]
     },
+    {
+      id: 3,
+      question: "Inside which HTML element do we put the JavaScript?",
+      answers: [
+        {option: "<js>", correct: false},
+        {option: "<script>", correct: true},
+        {option: "<javascript>", correct: false},
+        {option: "<scripting>", correct: false}
+      ]
+    },
   ]
 
   constructor() { }
