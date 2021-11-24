@@ -11,11 +11,35 @@ export class QuestionListComponent implements OnInit {
 questions: Question[] = [];
 
 currentQuestion = 0;
+answerSelected = false;
+correctAnswers = 0;
+incorrectAnswers = 0;
 
-constructor(private questionService: QuestionsService) {}
+result = false;
+
+constructor(private questionService: QuestionsService) { }
 
   ngOnInit(): void {
     this.questions = this.questionService.getQuestions();
+
   }
 
+  onAnswer(option: boolean) {
+    this.answerSelected = true;
+    setTimeout(() => {
+      this.currentQuestion++;
+      this.answerSelected = false;
+      console.log(option);
+    }, 2000);
+
+    if(option) {
+      this.correctAnswers++;
+    } else {
+      this.incorrectAnswers++;
+    }
+  }
+
+  showResult() {
+    this.result = true;
+  }
 }
