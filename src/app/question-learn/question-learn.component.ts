@@ -24,12 +24,13 @@ constructor(private questionService: QuestionsService) { }
 
   }
 
+
+
   onAnswer(option: boolean) {
     this.answerSelected = true;
     setTimeout(() => {
       this.currentQuestion++;
       this.answerSelected = false;
-      console.log(option);
     }, 2000);
 
     if(option) {
@@ -37,9 +38,15 @@ constructor(private questionService: QuestionsService) { }
     } else {
       this.incorrectAnswers++;
     }
+
   }
 
   showResult() {
     this.result = true;
   }
+
+  showAnswer() {
+    this.questions
+  }
+
 }
