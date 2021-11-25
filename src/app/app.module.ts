@@ -10,7 +10,8 @@ import { OptionBackgroundDirective } from './option-background.directive';
   declarations: [
     AppComponent,
     QuestionListComponent,
-    OptionBackgroundDirective
+    OptionBackgroundDirective,
+
   ],
   imports: [
     BrowserModule,
