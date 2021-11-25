@@ -3,14 +3,16 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { QuestionListComponent } from './question-list/question-list.component';
+import { QuestionLearnComponent } from './question-learn/question-learn.component';
 import { OptionBackgroundDirective } from './option-background.directive';
+import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    QuestionListComponent,
+    QuestionLearnComponent,
     OptionBackgroundDirective,
+    NavigationBarComponent,
 
   ],
   imports: [

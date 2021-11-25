@@ -3,11 +3,11 @@ import { QuestionsService } from '../shared/questions.service';
 import {Question} from '../shared/question';
 
 @Component({
-  selector: 'app-question-list',
-  templateUrl: './question-list.component.html',
-  styleUrls: ['./question-list.component.css']
+  selector: 'app-question-learn',
+  templateUrl: './question-learn.component.html',
+  styleUrls: ['./question-learn.component.css']
 })
-export class QuestionListComponent implements OnInit {
+export class QuestionLearnComponent implements OnInit {
 questions: Question[] = [];
 
 currentQuestion = 0;
