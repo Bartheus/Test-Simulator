@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Question } from '../shared/question';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -14,7 +15,8 @@ export class QuestionsService {
         {option: "delete", correct: false},
         {option: "remove", correct: false},
         {option: "rmdir", correct: true}
-      ]
+      ],
+      description: "You can remove directory with 'rmdir' command in your Terminal."
     },
     {
       id: 2,
@@ -24,7 +26,8 @@ export class QuestionsService {
         {option: "Markup Language", correct: true},
         {option: "Scripting Language", correct: false},
         {option: "Programming Language", correct: false}
-      ]
+      ],
+      description: "HTML is a Markup Language"
     },
     {
       id: 3,
@@ -34,7 +37,8 @@ export class QuestionsService {
         {option: "<script>", correct: true},
         {option: "<javascript>", correct: false},
         {option: "<scripting>", correct: false}
-      ]
+      ],
+      description: "To implement your JS code into HTML you need to use '<script>' tag."
     },
   ]
 

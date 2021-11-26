@@ -15,6 +15,12 @@ answerSelected = false;
 correctAnswers = 0;
 incorrectAnswers = 0;
 
+
+
+correctOption = '';
+
+description = '';
+
 result = false;
 
 constructor(private questionService: QuestionsService) { }
@@ -45,8 +51,34 @@ constructor(private questionService: QuestionsService) { }
     this.result = true;
   }
 
+
   showAnswer() {
-    this.questions
+    const question = this.questions[this.currentQuestion];
+    for (let answer of question.answers) {
+      if (answer.correct === true ) {
+        this.correctOption = answer.option;
+        this.description = question.description;
+
+      }
+    }
+  }
+
+  nextQuestion() {
+    if(this.currentQuestion >= this.questions.length - 1 ) {
+      console.log("exceeded the maximum number");
+    } else {
+      this.currentQuestion++;
+    }
+  }
+
+  previousQuestion() {
+    if(this.currentQuestion <= 0 ) {
+      console.log("exceeded the maximum number");
+    } else {
+      this.currentQuestion--;
+    }
   }
 
 }
+
+
