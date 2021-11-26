@@ -13,9 +13,11 @@
       <div *ngIf="result">
         Correct Answers: {{correctAnswers}} |  Incorrect Answers {{incorrectAnswers}}
       </div> -->
-      <button  class="btn btn-info btn-block"  (click)="showAnswer()">Show Answer</button>
+      <button [ngClass]="buttonText" class="btn btn-info btn-block"  (click)="showAnswer(); toggleShow()">{{buttonText}}</button>
+        <div *ngIf="show">
         <div >{{correctOption}} </div>
         <span>{{description}}</span>
+      </div>
       <button class="btn btn-danger btn-block" (click)="previousQuestion()">Previous</button>
       <button class="btn btn-success btn-block" (click)="nextQuestion()">Next</button>
     </div>

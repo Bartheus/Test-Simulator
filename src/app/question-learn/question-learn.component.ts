@@ -15,7 +15,9 @@ answerSelected = false;
 correctAnswers = 0;
 incorrectAnswers = 0;
 
+buttonText = "Show Hint";
 
+show = false;
 
 correctOption = '';
 
@@ -51,16 +53,24 @@ constructor(private questionService: QuestionsService) { }
     this.result = true;
   }
 
+  toggleShow() {
+    this.show = ! this.show;
+    if(this.show === false) {
+      this.buttonText = 'Show hint';
+    } else {
+      this.buttonText = 'Hide Hint';
+    }
+  }
 
   showAnswer() {
-    const question = this.questions[this.currentQuestion];
+    let question = this.questions[this.currentQuestion];
     for (let answer of question.answers) {
       if (answer.correct === true ) {
         this.correctOption = answer.option;
         this.description = question.description;
-
       }
     }
+
   }
 
   nextQuestion() {
@@ -68,6 +78,8 @@ constructor(private questionService: QuestionsService) { }
       console.log("exceeded the maximum number");
     } else {
       this.currentQuestion++;
+      this.showAnswer();
+      this.toggleShow();
     }
   }
 
@@ -76,6 +88,8 @@ constructor(private questionService: QuestionsService) { }
       console.log("exceeded the maximum number");
     } else {
       this.currentQuestion--;
+      this.showAnswer();
+      this.toggleShow();
     }
   }
 
