@@ -14,16 +14,13 @@ currentQuestion = 0;
 answerSelected = false;
 correctAnswers = 0;
 incorrectAnswers = 0;
-
 buttonText = "Show Hint";
-
 show = false;
-
 correctOption = '';
-
 description = '';
-
+answerCheckText = '';
 result = false;
+colorClass = 'normal';
 
 constructor(private questionService: QuestionsService) { }
 
@@ -32,33 +29,43 @@ constructor(private questionService: QuestionsService) { }
 
   }
 
-
-
-  onAnswer(option: boolean) {
-    this.answerSelected = true;
-    setTimeout(() => {
-      this.currentQuestion++;
-      this.answerSelected = false;
-    }, 2000);
-
-    if(option) {
-      this.correctAnswers++;
-    } else {
-      this.incorrectAnswers++;
+onAnswer() {
+    let question = this.questions[this.currentQuestion];
+    for (let answer of question.answers) {
+        if (answer.correct === true  ) {
+          this.colorClass = 'correct';
+        } else {
+          this.colorClass = 'incorrect';
+       }
     }
+}
 
-  }
+
+  // selectResponse() {
+  //   this.answerSelected = true;
+  // }
+
+  // check(status: any) {
+  //   if(status.correct){
+  //     return 'correct';
+  //   } else{
+  //     return  'incorrect;'
+  //   }
+
+  // }
 
   showResult() {
     this.result = true;
   }
 
   toggleShow() {
-    this.show = ! this.show;
+
+    this.show = !this.show;
+
     if(this.show === false) {
-      this.buttonText = 'Show hint';
+      this.buttonText = 'Show Answer';
     } else {
-      this.buttonText = 'Hide Hint';
+      this.buttonText = 'Hide Answer';
     }
   }
 
@@ -70,7 +77,6 @@ constructor(private questionService: QuestionsService) { }
         this.description = question.description;
       }
     }
-
   }
 
   nextQuestion() {
@@ -78,8 +84,13 @@ constructor(private questionService: QuestionsService) { }
       console.log("exceeded the maximum number");
     } else {
       this.currentQuestion++;
-      this.showAnswer();
-      this.toggleShow();
+      this.show = false;
+      if(this.show === false) {
+        this.buttonText = 'Show Answer';
+      } else {
+        this.buttonText = 'Hide Answer';
+      }
+
     }
   }
 
@@ -88,8 +99,12 @@ constructor(private questionService: QuestionsService) { }
       console.log("exceeded the maximum number");
     } else {
       this.currentQuestion--;
-      this.showAnswer();
-      this.toggleShow();
+      this.show = false;
+      if(this.show === false) {
+        this.buttonText = 'Show Answer';
+      } else {
+        this.buttonText = 'Hide Answer';
+      }
     }
   }
 

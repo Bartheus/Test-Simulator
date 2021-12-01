@@ -40,6 +40,17 @@ export class QuestionsService {
       ],
       description: "To implement your JS code into HTML you need to use '<script>' tag."
     },
+    {
+      id: 4,
+      question: "How do you write the contents of 3 files into a single file?",
+      answers: [
+        {option:"cat file1 file2 file3 > file", correct: true},
+        {option:"cat file1 > file && cat file2 >> file && cat file3 >> file", correct: true},
+        {option:"cat file1 >> file; cat file2 >> file; cat file3 >> file", correct: true},
+        {option:"cat file1 > file; cat file2 > file; cat file3 > file", correct: false},
+      ],
+      description: "There are many ways to do it"
+    }
   ]
 
   constructor() { }
