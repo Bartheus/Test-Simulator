@@ -56,51 +56,54 @@ constructor(private questionService: QuestionsService) { }
     }
   }
 
-  showAnswer() {
-    let question = this.questions[this.currentQuestion];
-    for (let answer of question.answers) {
-      if (answer.correct === true ) {
-        //add correct answer to array to show them all
-        this.correctOptions.push(answer.option);
-        this.description = question.description;
-        if(this.correctOptions.length > 3 ) {
-          this.correctOptions.pop();
-        }
-      }
-    }
-  }
+  // showAnswer() {
+  //   let question = this.questions[this.currentQuestion];
+  //   for (let answer of question.answers) {
+  //     if (answer.correct === true ) {
+  //       //add correct answer to array to show them all
+  //       this.correctOptions.push(answer.option);
+  //       this.description = question.description;
+  //       if(this.correctOptions.length > 3 ) {
+  //         this.correctOptions.pop();
+  //       }
+  //     }
+  //   }
+  // }
 
   nextQuestion() {
-    if(this.currentQuestion >= this.questions.length - 1 ) {
+    if(this.currentQuestion >= this.questions.length - 1) {
       this.isNextButtonDisabled = true;
     } else {
       this.currentQuestion++;
-      this.show = false;
-      if(this.show === false) {
-        this.buttonText = 'Show Answer';
-      } else {
-        this.buttonText = 'Hide Answer';
-      }
+      // this.show = false;
+      // if(this.show === false) {
+      //   this.buttonText = 'Show Answer';
+      // } else {
+      //   this.buttonText = 'Hide Answer';
+      // }
       this.selectedIndex = null ;
+      this.isNextButtonDisabled = false;
     }
-    this.correctOptions = [];
+    // this.correctOptions = [];
 
   }
 
   previousQuestion() {
-    if(this.currentQuestion <= 0 ) {
+    if(this.currentQuestion < 1 ) {
       this.isPrevButtonDisabled = true;
     } else {
       this.currentQuestion--;
-      this.show = false;
-      if(this.show === false) {
-        this.buttonText = 'Show Answer';
-      } else {
-        this.buttonText = 'Hide Answer';
-      }
+      // this.show = false;
+      // if(this.show === false) {
+      //   this.buttonText = 'Show Answer';
+      // } else {
+      //   this.buttonText = 'Hide Answer';
+      // }
       this.selectedIndex = null ;
+      this.isPrevButtonDisabled = true;
+
     }
-    this.correctOptions = [ ];
+    // this.correctOptions = [ ];
 
   }
 
