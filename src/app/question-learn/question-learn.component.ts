@@ -22,6 +22,7 @@ answerCheckText = '';
 result = false;
 colorClass = 'normal';
 selectedIndex:  any = null;
+selectedQuestion: Question;
 
 isPrevButtonDisabled = false;
 isNextButtonDisabled = false;
@@ -42,20 +43,29 @@ constructor(private questionService: QuestionsService) { }
     }
   }
 
-  showResult() {
-    this.result = true;
+  onSelect(question: Question):void {
+    this.selectedQuestion = question;
   }
 
-  toggleShow() {
-    this.show = !this.show;
-    if(this.show === false) {
-      this.buttonText = 'Show Answer';
+  nextQuestion() {
+    if(this.currentQuestion >= this.questions.length - 1) {
+      this.isNextButtonDisabled = true;
     } else {
-      this.buttonText = 'Hide Answer';
-
+      this.currentQuestion++;
+      this.selectedIndex = null ;
+      this.isNextButtonDisabled = false;
     }
   }
 
+  previousQuestion() {
+    if(this.currentQuestion < 1 ) {
+      this.isPrevButtonDisabled = true;
+    } else {
+      this.currentQuestion--;
+      this.selectedIndex = null ;
+      this.isPrevButtonDisabled = true;
+    }
+  }
   // showAnswer() {
   //   let question = this.questions[this.currentQuestion];
   //   for (let answer of question.answers) {
@@ -69,43 +79,19 @@ constructor(private questionService: QuestionsService) { }
   //     }
   //   }
   // }
+  // toggleShow() {
+  //   this.show = !this.show;
+  //   if(this.show === false) {
+  //     this.buttonText = 'Show Answer';
+  //   } else {
+  //     this.buttonText = 'Hide Answer';
 
-  nextQuestion() {
-    if(this.currentQuestion >= this.questions.length - 1) {
-      this.isNextButtonDisabled = true;
-    } else {
-      this.currentQuestion++;
-      // this.show = false;
-      // if(this.show === false) {
-      //   this.buttonText = 'Show Answer';
-      // } else {
-      //   this.buttonText = 'Hide Answer';
-      // }
-      this.selectedIndex = null ;
-      this.isNextButtonDisabled = false;
-    }
-    // this.correctOptions = [];
+  //   }
+  // }
 
-  }
-
-  previousQuestion() {
-    if(this.currentQuestion < 1 ) {
-      this.isPrevButtonDisabled = true;
-    } else {
-      this.currentQuestion--;
-      // this.show = false;
-      // if(this.show === false) {
-      //   this.buttonText = 'Show Answer';
-      // } else {
-      //   this.buttonText = 'Hide Answer';
-      // }
-      this.selectedIndex = null ;
-      this.isPrevButtonDisabled = true;
-
-    }
-    // this.correctOptions = [ ];
-
-  }
+  // showResult() {
+  //   this.result = true;
+  // }
 
 }
 

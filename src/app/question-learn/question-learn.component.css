@@ -56,3 +56,7 @@ li.incorrect {
   color: white;
   font-weight: 600;
 }
+
+.selected {
+  background: thistle !important;
+}
