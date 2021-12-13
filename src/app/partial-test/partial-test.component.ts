@@ -27,7 +27,7 @@ colorClass = 'normal';
 selectedIndex:  any = null;
 wrongText = '';
 isNextButtonDisabled = false;
-
+optionDisabled = false;
 constructor(private questionService: QuestionsService) { }
 
   ngOnInit(): void {
@@ -36,16 +36,20 @@ constructor(private questionService: QuestionsService) { }
   }
 
   onAnswer(e: Event, answer: any, index: number) {
-
     if (answer.correct) {
       (e.target as Element).className = 'correct';
+      this.optionDisabled = true;
     } else {
       (e.target as Element).className = 'incorrect';
       this.wrongText = (e.target as Element).innerHTML = 'You need to practic more!';
+      this.optionDisabled = true;
     }
   }
 
 
+
+
+ // function on button to navigate to next question
   nextQuestion() {
     if(this.currentQuestion >= this.questions.length - 1) {
       this.isNextButtonDisabled = true;
@@ -53,6 +57,7 @@ constructor(private questionService: QuestionsService) { }
       this.currentQuestion++;
       this.selectedIndex = null ;
       this.isNextButtonDisabled = false;
+      this.optionDisabled = false;
     }
   }
 }

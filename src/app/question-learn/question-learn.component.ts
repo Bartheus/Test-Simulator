@@ -48,22 +48,17 @@ constructor(private questionService: QuestionsService) { }
   }
 
   nextQuestion() {
-    if(this.currentQuestion >= this.questions.length - 1) {
-      this.isNextButtonDisabled = true;
-    } else {
+    if(this.currentQuestion <= this.questions.length - 1) {
       this.currentQuestion++;
       this.selectedIndex = null ;
-      this.isNextButtonDisabled = false;
     }
   }
 
   previousQuestion() {
     if(this.currentQuestion < 1 ) {
-      this.isPrevButtonDisabled = true;
     } else {
       this.currentQuestion--;
       this.selectedIndex = null ;
-      this.isPrevButtonDisabled = true;
     }
   }
   // showAnswer() {

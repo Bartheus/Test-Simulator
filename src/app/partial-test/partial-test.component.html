@@ -5,12 +5,12 @@
       <h3>{{questions[currentQuestion].question}}</h3>
       <div  *ngFor="let question of questions[currentQuestion].answers; let i = index">
         <ul>
-          <li [ngClass]="selectedIndex === null ? 'normal': selectedIndex === i? 'correct': 'incorrect'"
-          (click)="onAnswer($event, question, i)"> {{question.option}} </li>
+          <li [ngClass]="{'disabled': optionDisabled}" [ngClass]="selectedIndex === null ? 'normal': selectedIndex === i? 'correct': 'incorrect'"
+          (click)="optionDisabled || onAnswer($event, question, i)"> {{question.option}} </li>
 
         </ul>
       </div>
-     <div class="text-center"> <button  class="btn btn-success" (click)="nextQuestion()" ng-disabled="isNextButtonDisabled">Next</button></div>
+     <div class="text-center"> <button  class="btn btn-success" (click)="nextQuestion();" ng-disabled="isNextButtonDisabled">Next</button></div>
     </div>
 </div>
 
