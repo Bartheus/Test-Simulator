@@ -3,29 +3,21 @@ import { QuestionsService } from '../shared/questions.service';
 import {Question} from '../shared/question';
 
 @Component({
-  selector: 'app-partial-test',
-  templateUrl: './partial-test.component.html',
-  styleUrls: ['./partial-test.component.css']
+  selector: 'app-full-test',
+  templateUrl: './full-test.component.html',
+  styleUrls: ['./full-test.component.css']
 })
-export class PartialTestComponent implements OnInit {
+export class FullTestComponent implements OnInit {
 
 
   questions: Question[] = [];
 
 currentQuestion = 0;
-answerSelected = false;
 correctAnswers = 0;
 incorrectAnswers = 0;
-buttonText = "Show Hint";
-show = false;
-correctOptions: string[] = [];
-description = '';
-answerCheckText = '';
+clickedAnswer = 0;
 result = true;
-colorClass = 'normal';
 selectedIndex:  any = null;
-wrongText = '';
-isNextButtonDisabled = false;
 optionDisabled = false;
 constructor(private questionService: QuestionsService) { }
 
@@ -35,15 +27,20 @@ constructor(private questionService: QuestionsService) { }
   }
 
   onAnswer(e: Event, answer: any, index: number) {
-    if (answer.correct) {
-      (e.target as Element).className = 'correct';
-      this.optionDisabled = true;
-      this.correctAnswers++;
-    } else {
-      (e.target as Element).className = 'incorrect';
-      this.wrongText = (e.target as Element).innerHTML = 'You need to practic more!';
-      this.optionDisabled = true;
-      this.incorrectAnswers++;
+    (e.target as Element).className = 'answered';
+    this.clickedAnswer++;
+    let question = this.questions[this.currentQuestion];
+    for(let answer of question.answers) {
+      if(answer.correct === true) {
+        this.correctAnswers++;
+          if(this.clickedAnswer >= 1) {
+            this.optionDisabled = true;
+          } else {
+            this.optionDisabled =false ;
+          }
+      }else {
+        this.incorrectAnswers++;
+      }
     }
   }
 
@@ -59,14 +56,10 @@ constructor(private questionService: QuestionsService) { }
   }
 
  // function on button to navigate to next question
-  nextQuestion() {
-    if(this.currentQuestion >= this.questions.length - 1) {
-      this.isNextButtonDisabled = true;
-    } else {
+  submitAnswer() {
       this.currentQuestion++;
       this.selectedIndex = null ;
-      this.isNextButtonDisabled = false;
       this.optionDisabled = false;
     }
-  }
+
 }

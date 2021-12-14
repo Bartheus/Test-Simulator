@@ -47,20 +47,6 @@ constructor(private questionService: QuestionsService) { }
     this.selectedQuestion = question;
   }
 
-  nextQuestion() {
-    if(this.currentQuestion <= this.questions.length - 1) {
-      this.currentQuestion++;
-      this.selectedIndex = null ;
-    }
-  }
-
-  previousQuestion() {
-    if(this.currentQuestion < 1 ) {
-    } else {
-      this.currentQuestion--;
-      this.selectedIndex = null ;
-    }
-  }
   // showAnswer() {
   //   let question = this.questions[this.currentQuestion];
   //   for (let answer of question.answers) {

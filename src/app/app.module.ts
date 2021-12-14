@@ -9,6 +9,7 @@ import { NavigationBarComponent } from './navigation-bar/navigation-bar.componen
 import { TestComponent } from './test/test.component';
 import { HomeComponent } from './home/home.component';
 import { PartialTestComponent } from './partial-test/partial-test.component';
+import { FullTestComponent } from './full-test/full-test.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,6 +19,7 @@ import { PartialTestComponent } from './partial-test/partial-test.component';
     TestComponent,
     HomeComponent,
     PartialTestComponent,
+    FullTestComponent,
 
   ],
   imports: [
