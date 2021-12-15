@@ -4,15 +4,21 @@
       <p class = "text-center">{{currentQuestion + 1 }} of {{questions.length}} </p>
       <h3>{{questions[currentQuestion].question}}</h3>
       <div  *ngFor="let question of questions[currentQuestion].answers; let i = index">
-        <ul>
-          <li [ngClass]="{'disabled': optionDisabled}" class="li normal" (click)="optionDisabled || onAnswer($event, question, i)"> {{question.option}} </li>
-
-        </ul>
+        <div class="form-check" *ngIf="questions[currentQuestion].type === 'multipleChoice'">
+            <input class="form-check-input" type="checkbox" name="mycheckbox" (click)=" onAnswer()">
+            {{question.option}}
+        </div>
+        <div class="form-check" *ngIf="questions[currentQuestion].type === 'singleChoice'">
+          <input  class="form-check-input" type="radio" name="myradio">
+          {{question.option}}
+        </div>
+        <div *ngIf="questions[currentQuestion].type === 'textarea'">
+          <input name="text" type="text" cols="20" rows="1" value="Write your Answer ...">
+        </div>
       </div>
       <div class="text-center">
-        <button  class="btn btn-success" (click)="submitAnswer();">Submit</button>      </div>
+        <button  class="btn btn-success" (click)="submitAnswer();">Submit</button>
          + : {{correctAnswers}} | - : {{incorrectAnswers}}
     </div>
 </div>
-
 </div>

@@ -50,12 +50,9 @@ constructor(private questionService: QuestionsService) { }
   // showAnswer() {
   //   let question = this.questions[this.currentQuestion];
   //   for (let answer of question.answers) {
-  //     if (answer.correct === true ) {
-  //       //add correct answer to array to show them all
-  //       this.correctOptions.push(answer.option);
-  //       this.description = question.description;
-  //       if(this.correctOptions.length > 3 ) {
-  //         this.correctOptions.pop();
+  //     if (answer.correct) {
+
+
   //       }
   //     }
   //   }

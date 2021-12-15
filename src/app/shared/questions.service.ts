@@ -16,7 +16,8 @@ export class QuestionsService {
         {option: "remove", correct: false},
         {option: "rmdir", correct: true}
       ],
-      description: "You can remove directory with 'rmdir' command in your Terminal."
+      description: "You can remove directory with 'rmdir' command in your Terminal.",
+      type: "singleChoice"
     },
     {
       id: 2,
@@ -27,7 +28,8 @@ export class QuestionsService {
         {option: "Scripting Language", correct: false},
         {option: "Programming Language", correct: false}
       ],
-      description: "HTML is a Markup Language"
+      description: "HTML is a Markup Language",
+      type: 'singleChoice'
     },
     {
       id: 3,
@@ -38,19 +40,30 @@ export class QuestionsService {
         {option: "<javascript>", correct: false},
         {option: "<scripting>", correct: false}
       ],
-      description: "To implement your JS code into HTML you need to use '<script>' tag."
+      description: "To implement your JS code into HTML you need to use '<script>' tag.",
+      type: 'singleChoice'
     },
     {
       id: 4,
       question: "How do you write the contents of 3 files into a single file?",
       answers: [
-        {option:"cat file1 file2 file3 > file", correct: true},
+        {option:"cat file1 file2 file3 > file", correct: true },
         {option:"cat file1 > file && cat file2 >> file && cat file3 >> file", correct: true},
         {option:"cat file1 >> file; cat file2 >> file; cat file3 >> file", correct: true},
         {option:"cat file1 > file; cat file2 > file; cat file3 > file", correct: false},
       ],
-      description: "There are many ways to do it"
-    }
+      description: "There are many ways to do it",
+      type: 'multipleChoice'
+    },
+    {
+      id: 5,
+      question: "How to delete a directory in Linux?",
+      answers: [
+        {option: "rmdir", correct: true},
+      ],
+      description: "You can remove directory with 'rmdir' command in your Terminal.",
+      type: "textarea"
+    },
   ]
 
   constructor() { }
