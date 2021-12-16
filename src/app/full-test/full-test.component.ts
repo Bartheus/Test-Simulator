@@ -18,6 +18,7 @@ correctAnswers = 0;
 incorrectAnswers = 0;
 clickedAnswer = 0;
 result = true;
+isChecked = true;
 selectedIndex: 0;
 optionDisabled = false;
 points = 0;
@@ -26,9 +27,24 @@ constructor(private questionService: QuestionsService) { }
 
   ngOnInit(): void {
     this.questions = this.questionService.getQuestions();
+    console.log(this.questions);
   }
 
-  onAnswer() {
+  onAnswer(e:Event,  option: any) {
+    if(option.correct) {
+      if(this.questions[this.currentQuestion].type === 'multipleChoice') {
+        if(this.isChecked === true) {
+          this.points-=10;
+        } else {
+          this.points+=10;
+        }
+      }
+      this.points+=10;
+    } else {
+      if(this.points > 0 ) {
+        this.points-=10;
+      }
+    }
   }
 
   restartQuiz(){

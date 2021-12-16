@@ -5,11 +5,11 @@
       <h3>{{questions[currentQuestion].question}}</h3>
       <div  *ngFor="let question of questions[currentQuestion].answers; let i = index">
         <div class="form-check" *ngIf="questions[currentQuestion].type === 'multipleChoice'">
-            <input class="form-check-input" type="checkbox" name="mycheckbox" (click)=" onAnswer()">
+            <input class="form-check-input" type="checkbox" name="mycheckbox" ng-model="isChecked"  (click)=" onAnswer($event,question)">
             {{question.option}}
         </div>
         <div class="form-check" *ngIf="questions[currentQuestion].type === 'singleChoice'">
-          <input  class="form-check-input" type="radio" name="myradio">
+          <input  class="form-check-input" type="radio" name="myradio"   (click)=" onAnswer($event,question)">
           {{question.option}}
         </div>
         <div *ngIf="questions[currentQuestion].type === 'textarea'">
@@ -19,6 +19,7 @@
       <div class="text-center">
         <button  class="btn btn-success" (click)="submitAnswer();">Submit</button>
          + : {{correctAnswers}} | - : {{incorrectAnswers}}
+          <div>POINTS --->{{points}}</div>
     </div>
 </div>
 </div>
