@@ -18,11 +18,12 @@ correctAnswers = 0;
 incorrectAnswers = 0;
 clickedAnswer = 0;
 result = true;
-isChecked = true;
+isUnchecked = true;
 selectedIndex: 0;
 optionDisabled = false;
 points = 0;
 toggle = false;
+totalPoints = 0;
 constructor(private questionService: QuestionsService) { }
 
   ngOnInit(): void {
@@ -30,18 +31,16 @@ constructor(private questionService: QuestionsService) { }
     console.log(this.questions);
   }
 
-  onAnswer(e:Event,  option: any) {
+  checkIfChecked() {
+
+  }
+
+
+  onAnswer(option: any) {
     if(option.correct) {
-      if(this.questions[this.currentQuestion].type === 'multipleChoice') {
-        if(this.isChecked === true) {
-          this.points-=10;
-        } else {
-          this.points+=10;
-        }
-      }
       this.points+=10;
     } else {
-      if(this.points > 0 ) {
+      if(this.points > 0 ){
         this.points-=10;
       }
     }
@@ -55,7 +54,6 @@ constructor(private questionService: QuestionsService) { }
     // CHANGE THE STYLE OF THE <li> ELEMENTS AFTER RESTART BUTTON ON FIRST QUESTION
     // let lis = document.getElementsByClassName(".li")[0] as HTMLElement;
     // lis.setAttribute('class', 'normal');
-
   }
 
  // function on button to navigate to next question
@@ -63,6 +61,6 @@ constructor(private questionService: QuestionsService) { }
       this.currentQuestion++;
       this.selectedIndex = 0;
       this.optionDisabled = false;
-    }
+  }
 
 }
