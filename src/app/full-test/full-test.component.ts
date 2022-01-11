@@ -12,18 +12,19 @@ export class FullTestComponent implements OnInit {
 
 
   questions: Question[] = [];
-
+answersArray: any = [];
 currentQuestion = 0;
 correctAnswers = 0;
 incorrectAnswers = 0;
 clickedAnswer = 0;
-result = true;
+result = 0 ;
 isUnchecked = true;
 selectedIndex: 0;
 optionDisabled = false;
 points = 0;
 toggle = false;
 totalPoints = 0;
+checked = false;
 constructor(private questionService: QuestionsService) { }
 
   ngOnInit(): void {
@@ -31,18 +32,51 @@ constructor(private questionService: QuestionsService) { }
     console.log(this.questions);
   }
 
-  checkIfChecked() {
+  onAnswer(option: any, event: any) {
+    switch(this.questions[this.currentQuestion].type) {
+              case "singleChoice": {
+                  if(option.correct) {
+                    this.correctAnswers++;
+                    this.incorrectAnswers--;
+                    this.result ++;
+                  }
+                  else {
+                    this.incorrectAnswers++;
+                    if(this.correctAnswers > 0) {
+                      this.correctAnswers--;
+                    }
+                    if(this.incorrectAnswers > 1) {
+                      this.incorrectAnswers = 1;
+                    }
+                    if(this.result > 0) {
+                      this.result--;
+                    }
+                  }
+              }
+              break;
+              case "multipleChoice": {
+              }
+              break;
+              case "textarea": {
+                if(option.correct) {
+                  this.correctAnswers++;
+                  this.incorrectAnswers--;
+                  this.result ++;
+                }
+                else {
+                  this.incorrectAnswers++;
+                  if(this.correctAnswers > 0) {
+                    this.correctAnswers--;
+                  }
+                  if(this.incorrectAnswers > 1) {
+                    this.incorrectAnswers = 1;
+                  }
+                  if(this.result > 0) {
+                    this.result--;
+                  }
+                }
+              }
 
-  }
-
-
-  onAnswer(option: any) {
-    if(option.correct) {
-      this.points+=10;
-    } else {
-      if(this.points > 0 ){
-        this.points-=10;
-      }
     }
   }
 
@@ -51,13 +85,20 @@ constructor(private questionService: QuestionsService) { }
     this.correctAnswers = 0;
     this.incorrectAnswers = 0;
     window.location.reload();
-    // CHANGE THE STYLE OF THE <li> ELEMENTS AFTER RESTART BUTTON ON FIRST QUESTION
-    // let lis = document.getElementsByClassName(".li")[0] as HTMLElement;
-    // lis.setAttribute('class', 'normal');
   }
 
- // function on button to navigate to next question
   submitAnswer() {
+    let question = this.questions[this.currentQuestion];
+    if(question.type === "textarea") {
+      for (let answer of question.answers)
+      if(answer.option === "rmdir") {
+          this.points +=10;
+        } else {
+          if(this.points > 0) {
+            this.points -=10
+          }
+        }
+      }
       this.currentQuestion++;
       this.selectedIndex = 0;
       this.optionDisabled = false;
