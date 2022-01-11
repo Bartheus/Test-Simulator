@@ -1,107 +1,94 @@
 import { Component, OnInit } from '@angular/core';
+import {
+  FormBuilder,
+  FormGroup,
+  FormArray,
+  FormControl,
+  AbstractControl,
+} from '@angular/forms';
+
 import { QuestionsService } from '../shared/questions.service';
-import {Question} from '../shared/question';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { Question } from '../shared/question';
+import { ThisReceiver } from '@angular/compiler';
 
 @Component({
   selector: 'app-full-test',
   templateUrl: './full-test.component.html',
-  styleUrls: ['./full-test.component.css']
+  styleUrls: ['./full-test.component.css'],
 })
 export class FullTestComponent implements OnInit {
-
-
+  form: FormGroup;
   questions: Question[] = [];
-answersArray: any = [];
-currentQuestion = 0;
-correctAnswers = 0;
-incorrectAnswers = 0;
-clickedAnswer = 0;
-result = 0 ;
-isUnchecked = true;
-selectedIndex: 0;
-optionDisabled = false;
-points = 0;
-toggle = false;
-totalPoints = 0;
-checked = false;
-constructor(private questionService: QuestionsService) { }
+  currentQuestion = 0;
+  answersArray: boolean[] = [];
+  correctAnswers = 0;
+  incorrectAnswers = 0;
+  correctAnswersNumActual  = 0;
+  correctAnswersNumDesired = 0;
+
+  constructor(
+    private questionService: QuestionsService,
+    private fb: FormBuilder
+  ) {
+    this.form = this.fb.group({
+      checkArray: this.fb.array([]),
+    });
+  }
 
   ngOnInit(): void {
     this.questions = this.questionService.getQuestions();
-    console.log(this.questions);
-  }
+    let answersCheck = this.questions[this.currentQuestion].answers;
+    this.correctAnswersNumDesired = 0;
+    this.correctAnswersNumActual = 0;
 
-  onAnswer(option: any, event: any) {
-    switch(this.questions[this.currentQuestion].type) {
-              case "singleChoice": {
-                  if(option.correct) {
-                    this.correctAnswers++;
-                    this.incorrectAnswers--;
-                    this.result ++;
-                  }
-                  else {
-                    this.incorrectAnswers++;
-                    if(this.correctAnswers > 0) {
-                      this.correctAnswers--;
-                    }
-                    if(this.incorrectAnswers > 1) {
-                      this.incorrectAnswers = 1;
-                    }
-                    if(this.result > 0) {
-                      this.result--;
-                    }
-                  }
-              }
-              break;
-              case "multipleChoice": {
-              }
-              break;
-              case "textarea": {
-                if(option.correct) {
-                  this.correctAnswers++;
-                  this.incorrectAnswers--;
-                  this.result ++;
-                }
-                else {
-                  this.incorrectAnswers++;
-                  if(this.correctAnswers > 0) {
-                    this.correctAnswers--;
-                  }
-                  if(this.incorrectAnswers > 1) {
-                    this.incorrectAnswers = 1;
-                  }
-                  if(this.result > 0) {
-                    this.result--;
-                  }
-                }
-              }
-
-    }
-  }
-
-  restartQuiz(){
-    this.currentQuestion = 0;
-    this.correctAnswers = 0;
-    this.incorrectAnswers = 0;
-    window.location.reload();
-  }
-
-  submitAnswer() {
-    let question = this.questions[this.currentQuestion];
-    if(question.type === "textarea") {
-      for (let answer of question.answers)
-      if(answer.option === "rmdir") {
-          this.points +=10;
-        } else {
-          if(this.points > 0) {
-            this.points -=10
-          }
-        }
+    for(let i=0; i<answersCheck.length; i++) {
+      if(answersCheck[i].correct){
+        this.correctAnswersNumDesired++;
       }
-      this.currentQuestion++;
-      this.selectedIndex = 0;
-      this.optionDisabled = false;
+    }
+    console.log('ADASDASD ' + this.correctAnswersNumDesired);
+  }
+  onCheckboxChange(option: any, e: any, i: any) {
+    const checkArray: FormArray = this.form.get('checkArray') as FormArray;
+
+      // checkArray.push(new FormControl(option));
+      this.answersArray[i] = option;
+      console.log(option);
+      if(e.target.checked == option) {
+        this.correctAnswersNumActual++;
+      }  else {
+        this.correctAnswersNumActual--;
+      } console.log('AKTUELL' + this.correctAnswersNumActual);
+
+    if (!e.target.checked){
+
+      let i: number = 0;
+      checkArray.controls.forEach((item: AbstractControl) => {
+        if (item.value == e.target.value) {
+          checkArray.removeAt(i);
+          return;
+        }
+        i++;
+      });
+    }
+}
+
+  submitForm() {
+    if(this.correctAnswersNumActual == this.correctAnswersNumDesired) {
+      this.correctAnswers++;
+    } else {
+      this.incorrectAnswers++;
+    }
+    this.currentQuestion++;
+    this.correctAnswersNumDesired = 0;
+    this.correctAnswersNumActual = 0;
+    let answersCheck = this.questions[this.currentQuestion].answers;
+    for(let i=0; i<answersCheck.length; i++) {
+      if(answersCheck[i].correct){
+        this.correctAnswersNumDesired++;
+      }
+    }
+    console.log('ADASDASD ' + this.correctAnswersNumDesired);
   }
 
 }
