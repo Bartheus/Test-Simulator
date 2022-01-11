@@ -14,8 +14,18 @@ currentQuestion = 0;
 answerSelected = false;
 correctAnswers = 0;
 incorrectAnswers = 0;
-
+buttonText = "Show Hint";
+show = false;
+correctOptions: string[] = [];
+description = '';
+answerCheckText = '';
 result = false;
+colorClass = 'normal';
+selectedIndex:  any = null;
+selectedQuestion: Question;
+
+isPrevButtonDisabled = false;
+isNextButtonDisabled = false;
 
 constructor(private questionService: QuestionsService) { }
 
@@ -24,22 +34,43 @@ constructor(private questionService: QuestionsService) { }
 
   }
 
-  onAnswer(option: boolean) {
-    this.answerSelected = true;
-    setTimeout(() => {
-      this.currentQuestion++;
-      this.answerSelected = false;
-      console.log(option);
-    }, 2000);
+  onAnswer(e: Event, answer: any, index: number) {
 
-    if(option) {
-      this.correctAnswers++;
+    if (answer.correct) {
+      (e.target as Element).className = 'correct';
     } else {
-      this.incorrectAnswers++;
+        (e.target as Element).className = 'incorrect';
     }
   }
 
-  showResult() {
-    this.result = true;
+  onSelect(question: Question):void {
+    this.selectedQuestion = question;
   }
+
+  // showAnswer() {
+  //   let question = this.questions[this.currentQuestion];
+  //   for (let answer of question.answers) {
+  //     if (answer.correct) {
+
+
+  //       }
+  //     }
+  //   }
+  // }
+  // toggleShow() {
+  //   this.show = !this.show;
+  //   if(this.show === false) {
+  //     this.buttonText = 'Show Answer';
+  //   } else {
+  //     this.buttonText = 'Hide Answer';
+
+  //   }
+  // }
+
+  // showResult() {
+  //   this.result = true;
+  // }
+
 }
+
+

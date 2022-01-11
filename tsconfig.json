@@ -8,7 +8,8 @@
     "strict": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
-    "noImplicitReturns": true,
+    "noImplicitReturns": false,
+    "strictPropertyInitialization": false,
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
     "declaration": false,
@@ -20,7 +21,9 @@
     "module": "es2020",
     "lib": [
       "es2020",
-      "dom"
+      "dom",
+      "es6",
+      "DOM.Iterable"
     ]
   },
   "angularCompilerOptions": {

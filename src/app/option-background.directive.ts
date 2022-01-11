@@ -10,9 +10,9 @@ export class OptionBackgroundDirective {
 
     @HostListener('click') onAnswered() {
       if(this.correctAnswer) {
-        this.renderer.setStyle(this.el.nativeElement, 'background-color', 'green');
+        this.renderer.setStyle(this.el.nativeElement, 'color', 'green');
       } else {
-        this.renderer.setStyle(this.el.nativeElement, 'background-color', 'red');
+        this.renderer.setStyle(this.el.nativeElement, 'color', 'red');
       }
     }
 }
