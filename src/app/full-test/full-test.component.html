@@ -1,25 +1,21 @@
-<div class="container p-5 ">
-  <div class="row">
-    <div class = "col-sm-8 offset-2">
-      <p class = "text-center">{{currentQuestion + 1 }} of {{questions.length}} </p>
-      <h3>{{questions[currentQuestion].question}}</h3>
-      <div  *ngFor="let question of questions[currentQuestion].answers; let i = index">
-        <div class="form-check" *ngIf="questions[currentQuestion].type === 'multipleChoice'">
-            <input class="form-check-input" type="checkbox" ngModel="checked"  name="mycheckbox" (click)="onAnswer(question, $event)">
-            {{question.option}}
-        </div>
-        <div class="form-check" *ngIf="questions[currentQuestion].type === 'singleChoice'">
-          <input  class="form-check-input" type="radio" name="myradio"   (change)="onAnswer(question, $event)">
-          {{question.option}}
-        </div>
-        <div *ngIf="questions[currentQuestion].type === 'textarea'">
-          <input name="text" type="text" cols="20" rows="1" >
-        </div>
-      </div>
-      <div class="text-center">
-        <button  class="btn btn-success" (click)="submitAnswer()">Submit</button>
-          <div>POINTS --->{{points}}</div> Correct {{correctAnswers}} ||| Incorrect {{incorrectAnswers}}
-          RESULT {{result}}
+<form [formGroup]="form" (ngSubmit)="submitForm()" novalidate>
+  <div>{{questions[currentQuestion].question}}</div>
+  <div *ngFor="let question of questions[currentQuestion].answers; let i=index">
+    <div *ngIf="questions[currentQuestion].type === 'singleChoice'">
+      <input type="radio" name="radio" [value]="question.option"
+        (change)="onCheckboxChange(question.correct, $event ,i )" />
+      {{question.option}}
     </div>
-</div>
-</div>
+    <div *ngIf="questions[currentQuestion].type === 'multipleChoice'">
+      <input type="checkbox" [value]="question.option" (change)="onCheckboxChange(question.correct, $event ,i )" />
+      {{question.option}}
+    </div>
+    <div *ngIf="questions[currentQuestion].type === 'textarea'">
+      <input type="text" rows="10" cols="1" (change)="onCheckboxChange(question.correct, $event ,i )" />
+    </div>
+  </div>
+  Correct Answers : {{correctAnswers}}
+  <br>
+  Incorrect Answers : {{incorrectAnswers}}
+  <input type="submit" value="Submit">
+</form>
