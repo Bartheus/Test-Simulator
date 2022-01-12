@@ -3,6 +3,7 @@
     <div class = "col-sm-8 offset-2">
       <p class = "text-center">{{currentQuestion + 1 }} of {{questions.length}} </p>
       <h3>{{questions[currentQuestion].question}}</h3>
+      <span class="text-light bg-info" *ngIf="questions[currentQuestion].type === 'multipleChoice'"> There can be more then one correct answer !</span>
       <div  *ngFor="let question of questions[currentQuestion].answers; let i = index">
         <ul>
           <li class="li" [ngClass]="selectedIndex === null ? 'normal': selectedIndex === i? 'correct': 'incorrect'"
@@ -12,7 +13,7 @@
       <div class="text-center">
         <button  class="btn btn-success" *ngIf="showNextButton"  (click)="nextQuestion();">Next</button>
         <!-- show restart button only when it is a last question  -->
-        <button  class="btn btn-info ng-hide" *ngIf="showRestartButton" (click)="restartQuiz();" >Restart</button>
+        <button  class="btn btn-info ng-hide" *ngIf="showRestartButton" (click)="restartQuiz();"> Restart </button>
       </div>
     </div>
 </div>

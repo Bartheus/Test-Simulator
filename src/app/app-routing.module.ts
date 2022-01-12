@@ -5,6 +5,7 @@ import { TestComponent } from './test/test.component';
 import { HomeComponent } from './home/home.component';
 import { PartialTestComponent } from './partial-test/partial-test.component';
 import { FullTestComponent } from './full-test/full-test.component';
+import { ResultComponent } from './result/result.component';
 const routes: Routes = [
   {
     path:'',
@@ -31,6 +32,10 @@ const routes: Routes = [
   {
     path: 'full-test',
     component: FullTestComponent
+  },
+  {
+    path: 'result',
+    component: ResultComponent
   }
 ];
 

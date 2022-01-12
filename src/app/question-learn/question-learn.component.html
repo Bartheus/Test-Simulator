@@ -13,8 +13,8 @@
 
       <div *ngFor="let question of selectedQuestion.answers; let i = index">
         <ul>
-          <li  [ngClass]="selectedIndex === null ? 'normal': selectedIndex === i? 'correct': 'incorrect'"
-        (click)="onAnswer($event, question, i)"> {{question.option}}</li>
+          <li  [ngClass]="question.correct=== true ? 'correct' : 'incorrect'"
+        > {{question.option}}</li>
         </ul>
       </div>
     </div>

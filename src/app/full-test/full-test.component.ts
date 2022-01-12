@@ -8,7 +8,6 @@ import {
 
 import { QuestionsService } from '../shared/questions.service';
 import { Question } from '../shared/question';
-import { BoundText } from '@angular/compiler/src/render3/r3_ast';
 
 @Component({
   selector: 'app-full-test',
@@ -25,6 +24,7 @@ export class FullTestComponent implements OnInit {
   correctAnswersNumActual  = 0;
   correctAnswersNumDesired = 0;
   displayValue = '';
+  loadResult = false;
   constructor(
     private questionService: QuestionsService,
     private fb: FormBuilder
@@ -74,19 +74,14 @@ export class FullTestComponent implements OnInit {
 
 
   submitForm() {
-    let answersCheck = this.questions[this.currentQuestion].answers;
-
-
     //get input value from Fill in Questions
     if(this.questions[this.currentQuestion].type === 'textarea'){
       const val = (document.querySelector('#box') as HTMLInputElement).value
     let options = this.questions[this.currentQuestion].answers;
     for(let corrOption of options) {
       if(val === corrOption.option) {
-        console.log('correct')
         this.correctAnswers++;
       } else {
-        console.log('INcorrect')
         this.incorrectAnswers++;
       }
     }
@@ -102,8 +97,10 @@ export class FullTestComponent implements OnInit {
       this.currentQuestion++;
     } else {
       console.log("END");
-
+      //REDIRECT TO RESULT COMPONENT
     }
+
+    let answersCheck = this.questions[this.currentQuestion].answers;
     this.correctAnswersNumDesired = 0;
     this.correctAnswersNumActual = 0;
     for(let i=0; i<answersCheck.length; i++) {
@@ -111,7 +108,10 @@ export class FullTestComponent implements OnInit {
         this.correctAnswersNumDesired++;
       }
     }
+  }
 
-
+  loadResultFunc() {
+    this.submitForm();
+    this.loadResult = true;
   }
 }
