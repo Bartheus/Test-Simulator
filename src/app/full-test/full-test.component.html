@@ -1,21 +1,34 @@
-<form [formGroup]="form" (ngSubmit)="submitForm()" novalidate>
-  <div>{{questions[currentQuestion].question}}</div>
-  <div *ngFor="let question of questions[currentQuestion].answers; let i=index">
-    <div *ngIf="questions[currentQuestion].type === 'singleChoice'">
-      <input type="radio" name="radio" [value]="question.option"
-        (change)="onCheckboxChange(question.correct, $event ,i )" />
-      {{question.option}}
+<div *ngIf="incorrectAnswers<8">
+  <form [formGroup]="form" (ngSubmit)="submitForm()" novalidate *ngIf="!loadResult">
+    <div>{{questions[currentQuestion].question}}</div>
+    <div *ngFor="let question of questions[currentQuestion].answers; let i=index">
+      <div *ngIf="questions[currentQuestion].type === 'singleChoice'">
+        <input type="radio" name="radio" [value]="question.option"
+          (change)="onCheckboxChange(question.correct, $event ,i )" />
+        {{question.option}}
+      </div>
+      <div *ngIf="questions[currentQuestion].type === 'multipleChoice'">
+        <input type="checkbox" [value]="question.option" (change)="onCheckboxChange(question.correct, $event ,i )" />
+        {{question.option}}
+      </div>
+      <div *ngIf="questions[currentQuestion].type === 'textarea'">
+        <input type="text" rows="10" cols="1" placeholder="Write answer here..." id='box' />
+      </div>
     </div>
-    <div *ngIf="questions[currentQuestion].type === 'multipleChoice'">
-      <input type="checkbox" [value]="question.option" (change)="onCheckboxChange(question.correct, $event ,i )" />
-      {{question.option}}
-    </div>
-    <div *ngIf="questions[currentQuestion].type === 'textarea'">
-      <input type="text" rows="10" cols="1" placeholder="Write answer here..." id='box' />
-    </div>
+    <input *ngIf="currentQuestion < questions.length -1" type="submit" value="Submit">
+  </form>
+
+  <div *ngIf="currentQuestion > questions.length - 2">
+    <button (click)="loadResultFunc()" *ngIf="!loadResult">Show Result</button>
+    <div *ngIf="loadResult">
+      <h3>RESULT :</h3>
+      Correct Answers :{{correctAnswers}}
+      <br>
+      Incorrect Answers : {{incorrectAnswers}}</div>
   </div>
-  Correct Answers : {{correctAnswers}}
-  <br>
-  Incorrect Answers : {{incorrectAnswers}}
-  <input type="submit" value="Submit">
-</form>
+</div>
+
+<div *ngIf="incorrectAnswers == 8">
+  <div> You've 8 incorrect answers ! I think u should learn a bit more or try again. </div>
+  <button>Try Again</button> <button>Learn</button>
+</div>
