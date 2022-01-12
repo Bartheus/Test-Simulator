@@ -3,13 +3,12 @@ import {
   FormBuilder,
   FormGroup,
   FormArray,
-  FormControl,
   AbstractControl,
 } from '@angular/forms';
 
 import { QuestionsService } from '../shared/questions.service';
 import { Question } from '../shared/question';
-import { ThisReceiver } from '@angular/compiler';
+import { BoundText } from '@angular/compiler/src/render3/r3_ast';
 
 @Component({
   selector: 'app-full-test',
@@ -25,7 +24,7 @@ export class FullTestComponent implements OnInit {
   incorrectAnswers = 0;
   correctAnswersNumActual  = 0;
   correctAnswersNumDesired = 0;
-
+  displayValue = '';
   constructor(
     private questionService: QuestionsService,
     private fb: FormBuilder
@@ -46,7 +45,7 @@ export class FullTestComponent implements OnInit {
         this.correctAnswersNumDesired++;
       }
     }
-    console.log('ADASDASD ' + this.correctAnswersNumDesired);
+    console.log(this.correctAnswersNumDesired);
   }
   onCheckboxChange(option: any, e: any, i: any) {
     const checkArray: FormArray = this.form.get('checkArray') as FormArray;
@@ -73,22 +72,45 @@ export class FullTestComponent implements OnInit {
     }
 }
 
+
   submitForm() {
-    if(this.correctAnswersNumActual == this.correctAnswersNumDesired) {
-      this.correctAnswers++;
-    } else {
-      this.incorrectAnswers++;
+    let answersCheck = this.questions[this.currentQuestion].answers;
+
+
+    //get input value from Fill in Questions
+    if(this.questions[this.currentQuestion].type === 'textarea'){
+      const val = (document.querySelector('#box') as HTMLInputElement).value
+    let options = this.questions[this.currentQuestion].answers;
+    for(let corrOption of options) {
+      if(val === corrOption.option) {
+        console.log('correct')
+        this.correctAnswers++;
+      } else {
+        console.log('INcorrect')
+        this.incorrectAnswers++;
+      }
     }
-    this.currentQuestion++;
+  }
+    if(this.questions[this.currentQuestion].type !== 'textarea'){
+      if(this.correctAnswersNumActual == this.correctAnswersNumDesired) {
+        this.correctAnswers++;
+      } else {
+        this.incorrectAnswers++;
+      }
+    }
+    if(this.currentQuestion < this.questions.length -1) {
+      this.currentQuestion++;
+    } else {
+      console.log("END");
+    }
     this.correctAnswersNumDesired = 0;
     this.correctAnswersNumActual = 0;
-    let answersCheck = this.questions[this.currentQuestion].answers;
     for(let i=0; i<answersCheck.length; i++) {
       if(answersCheck[i].correct){
         this.correctAnswersNumDesired++;
       }
     }
-    console.log('ADASDASD ' + this.correctAnswersNumDesired);
-  }
 
+
+  }
 }

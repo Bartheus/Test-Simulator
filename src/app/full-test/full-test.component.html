@@ -11,7 +11,7 @@
       {{question.option}}
     </div>
     <div *ngIf="questions[currentQuestion].type === 'textarea'">
-      <input type="text" rows="10" cols="1" (change)="onCheckboxChange(question.correct, $event ,i )" />
+      <input type="text" rows="10" cols="1" placeholder="Write answer here..." id='box' />
     </div>
   </div>
   Correct Answers : {{correctAnswers}}
