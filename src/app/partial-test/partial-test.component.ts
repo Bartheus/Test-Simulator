@@ -25,8 +25,9 @@ result = true;
 colorClass = 'normal';
 selectedIndex:  any = null;
 wrongText = '';
-isNextButtonDisabled = false;
 optionDisabled = false;
+showNextButton = true;
+showRestartButton = false;
 constructor(private questionService: QuestionsService) { }
 
   ngOnInit(): void {
@@ -60,12 +61,12 @@ constructor(private questionService: QuestionsService) { }
 
  // function on button to navigate to next question
   nextQuestion() {
-    if(this.currentQuestion >= this.questions.length - 1) {
-      this.isNextButtonDisabled = true;
+    if(this.currentQuestion >= this.questions.length-1) {
+      this.showNextButton = false;
+      this.showRestartButton = true;
     } else {
       this.currentQuestion++;
       this.selectedIndex = null ;
-      this.isNextButtonDisabled = false;
       this.optionDisabled = false;
     }
   }
