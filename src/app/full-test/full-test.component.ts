@@ -102,6 +102,7 @@ export class FullTestComponent implements OnInit {
       this.currentQuestion++;
     } else {
       console.log("END");
+
     }
     this.correctAnswersNumDesired = 0;
     this.correctAnswersNumActual = 0;

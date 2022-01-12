@@ -5,17 +5,14 @@
       <h3>{{questions[currentQuestion].question}}</h3>
       <div  *ngFor="let question of questions[currentQuestion].answers; let i = index">
         <ul>
-          <li class="li" [ngClass]="{'disabled': optionDisabled}" [ngClass]="selectedIndex === null ? 'normal': selectedIndex === i? 'correct': 'incorrect'"
-          (click)="optionDisabled || onAnswer($event, question, i)"> {{question.option}} </li>
+          <li class="li" [ngClass]="selectedIndex === null ? 'normal': selectedIndex === i? 'correct': 'incorrect'"
+          (click)=" onAnswer($event, question, i)"> {{question.option}} </li>
         </ul>
       </div>
       <div class="text-center">
-        <button  class="btn btn-success" (click)="nextQuestion();">Next</button>
+        <button  class="btn btn-success" *ngIf="showNextButton"  (click)="nextQuestion();">Next</button>
         <!-- show restart button only when it is a last question  -->
-        <button  class="btn btn-info ng-hide" (click)="restartQuiz();" >Restart</button>
-      </div>
-      <div *ngIf="result">
-        Correct Answers: {{correctAnswers}} | Incorrect Answers: {{incorrectAnswers}}
+        <button  class="btn btn-info ng-hide" *ngIf="showRestartButton" (click)="restartQuiz();" >Restart</button>
       </div>
     </div>
 </div>
