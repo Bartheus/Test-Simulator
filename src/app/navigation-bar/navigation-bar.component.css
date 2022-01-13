@@ -3,5 +3,11 @@
 }
 .navbar-brand {
   font-size: 26px;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
+}
+.githubIcon {
+  font-size: 46px;
+  color: white !important;
+  float:right;
+  margin-right: 10px;
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { QuestionsService } from '../shared/questions.service';
 import {Question} from '../shared/question';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-partial-test',
@@ -28,6 +29,8 @@ wrongText = '';
 optionDisabled = false;
 showNextButton = true;
 showRestartButton = false;
+checkCorrectAnswer = false;
+checkWrongAnswer = false;
 constructor(private questionService: QuestionsService) { }
 
   ngOnInit(): void {
@@ -45,6 +48,15 @@ constructor(private questionService: QuestionsService) { }
       this.wrongText = (e.target as Element).innerHTML = 'You need to practic more!';
       this.optionDisabled = true;
       this.incorrectAnswers++;
+      this.checkWrongAnswer = true;
+      // Swal.fire("Incorrect Answer", "You should go back to learn module.", "error");
+      Swal.fire({
+        title: "Incorrect answer!",
+        text: "You should go back to learn module.",
+        icon: "error",
+        background : "#1A374D",
+        color:"white",
+      });
     }
   }
 
@@ -68,6 +80,24 @@ constructor(private questionService: QuestionsService) { }
       this.currentQuestion++;
       this.selectedIndex = null ;
       this.optionDisabled = false;
+      this.checkCorrectAnswer = false;
+      this.checkWrongAnswer =false;
     }
+  }
+
+  onSubmit() {
+    if(this.questions[this.currentQuestion].type === 'textarea'){
+      const val = (document.querySelector('#box') as HTMLInputElement).value
+    let options = this.questions[this.currentQuestion].answers;
+    for(let corrOption of options) {
+      if(val === corrOption.option) {
+        this.checkCorrectAnswer = true;
+        this.checkWrongAnswer =false;
+      } else {
+        this.checkWrongAnswer =true;
+        this.checkCorrectAnswer = false;
+      }
+    }
+  }
   }
 }

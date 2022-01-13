@@ -80,3 +80,9 @@ li.incorrect {
 .multipleInfo {
   color: #6998AB;
 }
+.corrAnswer {
+  color: green;
+}
+.wrongAnswer {
+  color: red;
+}

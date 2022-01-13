@@ -11,7 +11,6 @@ import { HomeComponent } from './home/home.component';
 import { PartialTestComponent } from './partial-test/partial-test.component';
 import { FullTestComponent } from './full-test/full-test.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { ResultComponent } from './result/result.component';
 import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
@@ -24,7 +23,6 @@ import { FooterComponent } from './footer/footer.component';
     HomeComponent,
     PartialTestComponent,
     FullTestComponent,
-    ResultComponent,
     FooterComponent,
 
   ],
