@@ -1,4 +1,6 @@
-
+.row {
+  height: 100vh;
+}
 .question {
   padding-bottom: 5px;
   padding-top: 5px;
@@ -8,8 +10,6 @@
 }
 
 ul {
-  display: flex;
-  width: 80%;
   margin: 0;
   padding: 0;
   flex-flow: column;
@@ -18,7 +18,7 @@ ul {
 ul li.normal {
   list-style: none;
   line-height: 2;
-  border: 1px solid #cdd2d2;
+  border: 1px solid #1A374D;
   margin-bottom: 10px;
   border-radius: 15px;
   text-align: center;
@@ -37,8 +37,8 @@ li.correct {
   border-radius: 15px;
   text-align: center;
   cursor: pointer;
-  border: 1px solid green;
-  background-color: green;
+  border: 1px solid #519259;
+  background-color: #519259;
   color: white;
   font-weight: 600;
 }
@@ -51,8 +51,8 @@ li.incorrect {
   border-radius: 15px;
   text-align: center;
   cursor: pointer;
-  border: 1px solid red;
-  background-color: red;
+  border: 1px solid #A9333A;
+  background-color: #A9333A;
   color: white;
   font-weight: 600;
 }
@@ -67,4 +67,16 @@ li.incorrect {
     border-radius: 15px;
     text-align: center;
     cursor: pointer;
+}
+.redirectButton {
+  color: #1A374D;
+  border-color: #6998AB;
+  margin: 5px;
+}
+.redirectButton:hover {
+  background-color: #6998AB;
+  color: #406882;
+}
+.multipleInfo {
+  color: #6998AB;
 }

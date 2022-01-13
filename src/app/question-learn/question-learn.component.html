@@ -1,23 +1,27 @@
-<div class="container p-5 ">
-  <ul class="list-group">
-    <li [class.selected]="question === selectedQuestion"
-        class="list-group-item"
-        *ngFor="let question of questions"
-        (click)="onSelect(question)">{{question.id}}. {{question.question}}
-    </li>
-  </ul>
-
+<div class="wrapper">
   <div class="row">
-    <div *ngIf="selectedQuestion"  class = "col-sm-8 offset-2">
-      <h3 > {{selectedQuestion.id}}. {{selectedQuestion.question}}</h3>
+    <!-- First Column -->
+    <div class=" questionList col-3 d-flex justify-content-start">
+      <ul class="list-group overflow-auto">
+        <li [class.selected]="question === selectedQuestion" class="list-group-item" *ngFor="let question of questions"
+          (click)="onSelect(question)"><span class="questionId">{{question.id}}</span>. {{question.question}}
+        </li>
+      </ul>
+    </div>
+    <!-- Second Column -->
+    <div class="selectedQuestions col-9 d-flex justify-content-center align-items-center text-start">
+      <div *ngIf="!selectedQuestion">
+        <h4>Choose a question from a list to display it.</h4>
+      </div>
+      <div  *ngIf="selectedQuestion">
+        <div> <span class="selectedQuestionId">{{selectedQuestion.id}}.</span> &nbsp; <span class="selectedQuestionText">{{selectedQuestion.question}}</span></div>
 
-      <div *ngFor="let question of selectedQuestion.answers; let i = index">
-        <ul>
-          <li  [ngClass]="question.correct=== true ? 'correct' : 'incorrect'"
-        > {{question.option}}</li>
-        </ul>
+        <div class="d-flex justify-content-center" *ngFor="let question of selectedQuestion.answers; let i = index">
+          <ul>
+            <li [ngClass]="question.correct=== true ? 'correct' : 'incorrect'"> {{question.option}}</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
 </div>
-

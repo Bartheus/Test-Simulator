@@ -114,4 +114,12 @@ export class FullTestComponent implements OnInit {
     this.submitForm();
     this.loadResult = true;
   }
+
+  restartQuiz(){
+    this.currentQuestion = 0;
+    this.correctAnswers = 0;
+    this.incorrectAnswers = 0;
+    window.location.reload();
+  }
+
 }

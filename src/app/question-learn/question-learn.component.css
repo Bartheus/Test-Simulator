@@ -1,4 +1,6 @@
-
+.wrapper {
+  height: 100vh;
+}
 .question {
   padding-bottom: 5px;
   padding-top: 5px;
@@ -15,7 +17,6 @@ ul {
   flex-flow: column;
 }
 
-
 li.correct {
   list-style: none;
   line-height: 2;
@@ -24,8 +25,8 @@ li.correct {
   border-radius: 15px;
   text-align: center;
 
-  border: 1px solid green;
-  background-color: green;
+  border: 1px solid #519259;
+  background-color: #519259;
   color: white;
   font-weight: 600;
 }
@@ -38,13 +39,73 @@ li.incorrect {
   border-radius: 15px;
   text-align: center;
   cursor: pointer;
-  border: 1px solid red;
-  background-color: red;
+  border: 1px solid #A9333A;
+  background-color: #A9333A;
   color: white;
   font-weight: 600;
 }
 
 .selected {
   background: thistle !important;
+}
+.list-group {
+  width:400px;
+  height:100vh;
+  margin-bottom: 0;
+  border-top: 1px solid #6998AB;
+  border-bottom: 1px solid #6998AB;
+  border-right: 1px solid #6998AB;
 
+
+}
+.list-group-item {
+  background-color: #1A374D !important;
+  color: #B1D0E0;
+}
+.list-group-item:hover {
+  background-color: #B1D0E0 !important;
+  color: #1A374D;
+  cursor: pointer;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #B1D0E0;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #6998AB;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #6998AB;
+}
+
+.questionId {
+  font-size: 18px;
+  font-weight: 800;
+}
+.selectedQuestionId {
+  font-size: 32px;
+  color: #1A374D;
+  font-weight: 800;
+}
+.selectedQuestionText {
+  font-size: 24px;
+  color: #1A374D;
+  font-weight: 600;
+}
+.selectedQuestions {
+  height: 90vh;
+
+}
+.row {
+  width: 100%;
 }
