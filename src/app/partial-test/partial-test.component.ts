@@ -96,6 +96,13 @@ constructor(private questionService: QuestionsService) { }
       } else {
         this.checkWrongAnswer =true;
         this.checkCorrectAnswer = false;
+        Swal.fire({
+          title: "Incorrect answer!",
+          text: "You should go back to learn module.",
+          icon: "error",
+          background : "#1A374D",
+          color:"white",
+        });
       }
     }
   }

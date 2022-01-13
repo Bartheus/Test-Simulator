@@ -11,7 +11,7 @@
             (click)=" onAnswer($event, question, i)"> {{question.option}} </li>
         </ul>
         <div   *ngIf="questions[currentQuestion].type === 'textarea'"> <input  id="box" placeholder="Write your answer..." type="text">
-        <button (click)="onSubmit()">Check</button>
+        <button class="redirectButton btn btn-outline-primary ml-2" (click)="onSubmit()">Check</button>
           <div *ngIf="checkCorrectAnswer" class="corrAnswer">Correct Answer!</div>
           <div *ngIf="checkWrongAnswer" class="wrongAnswer">Wrong answer you need to practice more!</div>
       </div>
