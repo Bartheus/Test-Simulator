@@ -1,8 +1,12 @@
-<div class="container p-5 ">
-  <div class="row">
-    <div class = "col-sm-8 offset-2">
-      <button [routerLink]="['/partial-test']">Partial Test</button>
-      <button [routerLink]="['/full-test']"> Full Test</button>
+<div class="container">
+  <div class="row d-flex justify-content-around align-items-center text-center">
+    <div class = "col-4">
+      <h3>Check your knowledge and get feedback if you answer wrong.</h3>
+      <button class="redirectButton btn btn-outline-primary btn-lg"  [routerLink]="['/partial-test']">Partial Test</button>
+    </div>
+    <div class = "col-4">
+      <h3>If you are ready answer the questions and check your score.</h3>
+      <button class="redirectButton btn btn-outline-primary btn-lg" [routerLink]="['/full-test']"> Full Test</button>
     </div>
   </div>
 </div>

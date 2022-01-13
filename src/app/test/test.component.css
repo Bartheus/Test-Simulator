@@ -1,0 +1,13 @@
+
+.row {
+  height: 100vh;
+}
+.redirectButton {
+  color: #1A374D;
+  border-color: #6998AB;
+  margin: 5px;
+}
+.redirectButton:hover {
+  background-color: #6998AB;
+  color: #406882;
+}
