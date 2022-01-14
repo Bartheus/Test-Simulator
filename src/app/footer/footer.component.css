@@ -3,3 +3,9 @@
   font-size: 1.3rem;
 }
 
+.cookiesText {
+  font-size: 14px;
+}
+.footerLinks {
+  cursor: pointer;
+}

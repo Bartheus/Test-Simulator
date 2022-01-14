@@ -1,5 +1,16 @@
-<footer class="footer ">
+<footer class="footer">
   <div class="container">
-    <span class="text-muted">School Project - Lern and Prüf Simulator</span>
+    <div class="row">
+      <div class="col-4 text-start pt-2">
+        <span class="text-muted">Lern and Prüf Simulator - created by Bartlomiej Slapinski</span>
+      </div>
+      <div class="col-4 text-center  text-light pt-2">
+        <div class="footerLinks" [routerLink]="['/impressum']">Impressum</div>
+        <div class="footerLinks" [routerLink]="['/datenshutz']">Datenschutzerklärung</div>
+      </div>
+      <div class="col-4">
+        <div class="text-light cookiesText pt-3">  Diese Website speichert weder Cookies noch persönliche Informationen. Eine Cookiezustimmung ist nicht notwendig.</div>
+      </div>
+    </div>
   </div>
 </footer>

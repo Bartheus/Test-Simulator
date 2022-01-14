@@ -4,9 +4,14 @@
 .redirectButton {
   color: #1A374D;
   border-color: #6998AB;
-  margin: 5px;
+  margin: 10px;
 }
 .redirectButton:hover {
   background-color: #6998AB;
   color: #406882;
+}
+.brainIcon {
+  font-size: 72px;
+  margin: 5px;
+  color: #1A374D;
 }

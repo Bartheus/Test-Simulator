@@ -11,3 +11,13 @@
   float:right;
   margin-right: 10px;
 }
+.dropDownMenu {
+  background-color: #406882;
+}
+.dropDownItem {
+  color: #B1D0E0 !important;
+}
+.dropDownItem:hover {
+  background-color: #B1D0E0;
+  color: #406882 !important;
+}

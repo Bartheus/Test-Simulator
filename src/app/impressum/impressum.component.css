@@ -1,0 +1,14 @@
+.container {
+  height: 100%;
+  padding-top: 5%;
+}
+#title {
+  background-color: #406882;
+  color: #B1D0E0;
+  text-align: center;
+  width: 50%;
+}
+.impressumText {
+  font-size: 1.2rem;
+  color: #1A374D;
+}

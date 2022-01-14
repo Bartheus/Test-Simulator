@@ -12,6 +12,8 @@ import { PartialTestComponent } from './partial-test/partial-test.component';
 import { FullTestComponent } from './full-test/full-test.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { FooterComponent } from './footer/footer.component';
+import { ImpressumComponent } from './impressum/impressum.component';
+import { DatenshutzComponent } from './datenshutz/datenshutz.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { FooterComponent } from './footer/footer.component';
     PartialTestComponent,
     FullTestComponent,
     FooterComponent,
+    ImpressumComponent,
+    DatenshutzComponent,
 
   ],
   imports: [

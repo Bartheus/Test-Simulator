@@ -15,6 +15,16 @@
         <li class="nav-item">
           <a routerLinkActive="active" [routerLink]="['/test']" class="nav-link" href="#">Test</a>
         </li>
+        <li class="nav-item dropdown ">
+          <a class="nav-link dropdown-toggle" href="#"  id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Contact
+          </a>
+          <div class="dropdown-menu dropDownMenu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item dropDownItem" [routerLink]="['/impressum']">Impressum</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item dropDownItem" [routerLink]="['/datenshutz']">Datenschutzerklärung</a>
+          </div>
+        </li>
       </ul>
     </div>
     <a target="blank" href="https://github.com/Bartheus/Test-Simulator"><span class="iconify githubIcon" data-icon="mdi:github"></span></a>
