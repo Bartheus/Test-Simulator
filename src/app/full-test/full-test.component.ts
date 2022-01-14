@@ -25,6 +25,8 @@ export class FullTestComponent implements OnInit {
   correctAnswersNumDesired = 0;
   displayValue = '';
   loadResult = false;
+  isDisabled = true;
+  value = '';
   constructor(
     private questionService: QuestionsService,
     private fb: FormBuilder
@@ -49,18 +51,15 @@ export class FullTestComponent implements OnInit {
   }
   onCheckboxChange(option: any, e: any, i: any) {
     const checkArray: FormArray = this.form.get('checkArray') as FormArray;
-
-      // checkArray.push(new FormControl(option));
       this.answersArray[i] = option;
       console.log(option);
       if(e.target.checked == option) {
         this.correctAnswersNumActual++;
       }  else {
         this.correctAnswersNumActual--;
-      } console.log('AKTUELL' + this.correctAnswersNumActual);
+      } //console.log('AKTUELL' + this.correctAnswersNumActual);
 
     if (!e.target.checked){
-
       let i: number = 0;
       checkArray.controls.forEach((item: AbstractControl) => {
         if (item.value == e.target.value) {
@@ -69,23 +68,40 @@ export class FullTestComponent implements OnInit {
         }
         i++;
       });
-    }
+    } else {}
+    this.isDisabled = false;
 }
 
+  toggleSubmitButtonOnInput() {
+    let val = (document.querySelector('#box') as HTMLInputElement).value
+    if(val !== '') {
+      this.isDisabled = false;
+    }
+  }
 
-  submitForm() {
+  getInputValue() {
     //get input value from Fill in Questions
     if(this.questions[this.currentQuestion].type === 'textarea'){
-      const val = (document.querySelector('#box') as HTMLInputElement).value
+      let val = (document.querySelector('#box') as HTMLInputElement).value
+      console.log(val);
     let options = this.questions[this.currentQuestion].answers;
     for(let corrOption of options) {
       if(val === corrOption.option) {
         this.correctAnswers++;
+        this.isDisabled = false;
       } else {
+        this.isDisabled = false;
         this.incorrectAnswers++;
       }
     }
+    this.isDisabled = false;
   }
+  }
+
+  // FUNCTION TO SUBMIT A QUESTION FORM AFTER ANSWERING
+  submitForm() {
+    this.getInputValue()
+    this.isDisabled = true;
     if(this.questions[this.currentQuestion].type !== 'textarea'){
       if(this.correctAnswersNumActual == this.correctAnswersNumDesired) {
         this.correctAnswers++;
@@ -93,7 +109,7 @@ export class FullTestComponent implements OnInit {
         this.incorrectAnswers++;
       }
     }
-    if(this.currentQuestion < this.questions.length -1) {
+    if(this.currentQuestion < this.questions.length - 1) {
       this.currentQuestion++;
     } else {
       console.log("END");
@@ -108,6 +124,7 @@ export class FullTestComponent implements OnInit {
         this.correctAnswersNumDesired++;
       }
     }
+
   }
 
   loadResultFunc() {

@@ -5,7 +5,7 @@
         <div class="questionText"> {{questions[currentQuestion].question}}</div>
         <div *ngFor="let question of questions[currentQuestion].answers; let i=index">
           <div *ngIf="questions[currentQuestion].type === 'singleChoice'">
-            <input type="radio" name="radio" [value]="question.option"
+            <input  type="radio" name="radio" [value]="question.option"
               (change)="onCheckboxChange(question.correct, $event ,i )" />
             {{question.option}}
           </div>
@@ -15,11 +15,11 @@
             {{question.option}}
           </div>
           <div *ngIf="questions[currentQuestion].type === 'textarea'">
-            <input type="text" rows="10" cols="1" placeholder="Write answer here..." id='box' />
+            <input (keyup) = "toggleSubmitButtonOnInput()" type="text" rows="10" cols="1" placeholder="Write answer here..." id='box' />
           </div>
         </div>
-        <input class="redirectButton btn btn-outline-primary" *ngIf="currentQuestion < questions.length -1"
-          type="submit" value="Submit">
+        <input   class="redirectButton btn btn-outline-primary" *ngIf="currentQuestion < questions.length -1"
+          type="submit" value="Submit" [disabled]="isDisabled">
       </form>
 
       <div *ngIf="currentQuestion > questions.length-2">
@@ -36,8 +36,8 @@
 
     <div *ngIf="incorrectAnswers == 8">
       <div class="answersText">Aww Snap ! <br> You've made 8 incorrect answers ! I think u should learn a bit more or try again. </div>
-      <button class="redirectButton btn btn-outline-primary" (click)="restartQuiz()">Try Again</button> <button
-        class="redirectButton btn btn-outline-primary" [routerLink]="['/question-learn']">Learn</button>
+      <button class="redirectButton btn btn-outline-primary" (click)="restartQuiz()">Try Again</button>
+      <button class="redirectButton btn btn-outline-primary" [routerLink]="['/question-learn']">Learn</button>
     </div>
   </div>
 </div>

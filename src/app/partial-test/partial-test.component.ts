@@ -101,7 +101,6 @@ constructor(private questionService: QuestionsService) { }
           text: "You should go back to learn module.",
           icon: "error",
           background : "#1A374D",
-          color:"white",
         });
       }
     }
