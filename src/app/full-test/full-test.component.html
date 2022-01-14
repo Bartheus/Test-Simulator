@@ -1,0 +1,43 @@
+<div class="row d-flex justify-content-center align-items-center">
+  <div class="col-6 text-center">
+    <div *ngIf="incorrectAnswers<8">
+      <form [formGroup]="form" (ngSubmit)="submitForm()" novalidate *ngIf="!loadResult">
+        <div class="questionText"> {{questions[currentQuestion].question}}</div>
+        <div *ngFor="let question of questions[currentQuestion].answers; let i=index">
+          <div *ngIf="questions[currentQuestion].type === 'singleChoice'">
+            <input  type="radio" name="radio" [value]="question.option"
+              (change)="onCheckboxChange(question.correct, $event ,i )" />
+            {{question.option}}
+          </div>
+          <div *ngIf="questions[currentQuestion].type === 'multipleChoice'">
+            <input class="custom-control custom-checkbox" type="checkbox" [value]="question.option"
+              (change)="onCheckboxChange(question.correct, $event ,i )" />
+            {{question.option}}
+          </div>
+          <div *ngIf="questions[currentQuestion].type === 'textarea'">
+            <input (keyup) = "toggleSubmitButtonOnInput()" type="text" rows="10" cols="1" placeholder="Write answer here..." id='box' />
+          </div>
+        </div>
+        <input   class="redirectButton btn btn-outline-primary" *ngIf="currentQuestion < questions.length -1"
+          type="submit" value="Submit" [disabled]="isDisabled">
+      </form>
+
+      <div *ngIf="currentQuestion > questions.length-2">
+        <button class="redirectButton btn btn-outline-primary" (click)="loadResultFunc()" *ngIf="!loadResult">Show Result</button>
+        <div class="answersText" *ngIf="loadResult">
+          <h1>RESULT: </h1>
+          Correct Answers: {{correctAnswers}}
+          <br>
+          Incorrect Answers: {{incorrectAnswers}}
+          <div><button class="redirectButton btn btn-outline-primary" [routerLink]="['/home']">Home</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="incorrectAnswers == 8">
+      <div class="answersText">Aww Snap ! <br> You've made 8 incorrect answers ! I think u should learn a bit more or try again. </div>
+      <button class="redirectButton btn btn-outline-primary" (click)="restartQuiz()">Try Again</button>
+      <button class="redirectButton btn btn-outline-primary" [routerLink]="['/question-learn']">Learn</button>
+    </div>
+  </div>
+</div>

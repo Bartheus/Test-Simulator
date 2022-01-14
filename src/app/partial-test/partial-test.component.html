@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row d-flex justify-content-around align-items-center">
+    <div class="col-6 text-center">
+      <p >{{currentQuestion + 1 }} of {{questions.length}} </p>
+      <h3>{{questions[currentQuestion].question}}</h3>
+      <span class="multipleInfo" *ngIf="questions[currentQuestion].type === 'multipleChoice'"> There can be more
+        than one correct answer !</span>
+      <div *ngFor="let question of questions[currentQuestion].answers; let i = index">
+        <ul  *ngIf="questions[currentQuestion].type !== 'textarea'">
+          <li [ngClass]="selectedIndex === null ? 'normal': selectedIndex === i? 'correct': 'incorrect'"
+            (click)=" onAnswer($event, question, i)"> {{question.option}} </li>
+        </ul>
+        <div   *ngIf="questions[currentQuestion].type === 'textarea'"> <input  id="box" placeholder="Write your answer..." type="text">
+        <button class="redirectButton btn btn-outline-primary ml-2" (click)="onSubmit()">Check</button>
+          <div *ngIf="checkCorrectAnswer" class="corrAnswer">Correct Answer!</div>
+          <div *ngIf="checkWrongAnswer" class="wrongAnswer">Wrong answer you need to practice more!</div>
+      </div>
+      </div>
+      <div>
+        <button class="redirectButton btn btn-outline-primary" *ngIf="showNextButton" (click)="nextQuestion();">Next</button>
+        <!-- show restart button only when it is a last question  -->
+        <button class="redirectButton btn btn-outline-primary ng-hide" *ngIf="showRestartButton" (click)="restartQuiz();"> Restart </button>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,29 @@
+.row {
+  height: 100vh;
+}
+.question {
+  padding-bottom: 5px;
+  padding-top: 5px;
+}
+.form-check-label {
+  margin-left: 5px;
+}
+.questionText {
+  font-size: 24px;
+  color: #1A374D;
+  font-weight: 600;
+}
+.redirectButton {
+  color: #1A374D;
+  border-color: #6998AB;
+  margin: 5px;
+}
+.redirectButton:hover {
+  background-color: #6998AB;
+  color: #406882;
+}
+.answersText {
+  font-size: 22px;
+  color: #1A374D;
+  font-weight: 600;
+}
