@@ -2,7 +2,8 @@
 # Lern und Prüf Simulator 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.2.
 School Project created as a Angular Module Final Project for BITLC - Buissness IT Learning Center  
-
+### LIVE PREVIEW 
+https://61e14c0f7feb12000743676a--lps-bart.netlify.app/home
 # First Release 
 First relase ver 1.0 
 Deployed on Netlify for Live Preview 
